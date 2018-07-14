@@ -37,10 +37,10 @@ rl.on('close', () => { // 'close'イベント: 全ての行を読み込み終わ
     value.change = value.popu15 / value.popu10;
   }
   const rankingArray = Array.from(map).sort((pair1, pair2) => { // Array.from(): 連想配列を普通の配列に変換する。
-    return pair2[1].change - pair1[1].change;
-  });
-  const rankingStrings = rankingArray.map((pair) => { //map関数: Arrayの要素それぞれを、与えられた関数を適用した内容に変換する。
-    return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
-  });
+    return pair1[1].change - pair2[1].change;
+  }); // [ '愛知県', { popu10: 361670, popu15: 371756, change: 1.0278873005778748 } ] の形式
+  const rankingStrings = rankingArray.map((pair, i) => { //map関数: Arrayの要素それぞれを、与えられた関数を適用した内容に変換する。
+    return (i + 1) + '位 ' + pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
+  }); // '愛知県: 361670=>371756 変化率:1.0278873005778748' の形式
   console.log(rankingStrings);
 })
